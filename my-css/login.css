@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+:root {
+    --mainColor: #252734;
+    --secondaryColor: #333646;
+    --acsentColor: #ff9100;
+}
+
+.bgAcsent {
+    background-color: var(--acsentColor) !important;
+}
+
+.colorAcsent {
+    color: var(--acsentColor) !important;
+}
+
+* {
+    font-family: "ubuntu", sans-serif;
+}
+
+.row {
+    min-height: 100vh;
+}
+
+.bg-login {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/login-img-3.jpg);
+    height: 100vh;
+    background-position: left;
+    background-size: cover;
+}
+
+.bg-login h1 {
+    letter-spacing: 7px;
+}
+
+.h1-brand a {
+    font-family: "Abril Fatface", cursive;
+}
+
+.card {
+    width: 55%;
+}
+
+form {
+    width: 100%;
+}

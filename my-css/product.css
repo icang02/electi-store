@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+* {
+    font-family: "ubuntu", sans-serif;
+}
+
+:root {
+    --mainColor: #252734;
+    --secondaryColor: #333646;
+    --acsentColor: #ff9100;
+}
+
+.colorAcsent {
+    color: var(--acsentColor) !important;
+}
+
+.bgAcsent {
+    background-color: var(--acsentColor) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondaryColor) !important;
+}
+
+body {
+    background: var(--mainColor);
+}
+
+.navbar {
+    background-color: var(--secondaryColor) !important;
+}
+
+.btn-custom {
+    background: var(--acsentColor);
+    border: none;
+}
+
+/* Style background */
+.background {
+    width: 100%;
+    min-height: 500px;
+    background-image: url(../img/brand-img.jpg);
+    background-position: top;
+}
+/* akhir background */
+
+/* Style Product */
+.card {
+    background-color: #414558;
+}
+
+.card a {
+    border: none;
+}
+/* akhir Product */

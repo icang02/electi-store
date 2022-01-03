@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+
+:root {
+    --mainColor: #252734;
+    --secondaryColor: #333646;
+    --acsentColor: #ff9100;
+}
+
+.navbar {
+    background-color: var(--secondaryColor) !important;
+}
+
+* {
+    font-family: "ubuntu", sans-serif;
+}
+
+#feature,
+#browse-product,
+#browse-brand {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+/* Style Navbar */
+body {
+    background-color: var(--mainColor);
+}
+/* End Navbar */
+
+/* Style Hero */
+.colorAcsent {
+    color: var(--acsentColor) !important;
+}
+
+.bgAcsent {
+    background-color: var(--acsentColor) !important;
+}
+
+#hero,
+#hero .container .row {
+    min-height: 100vh;
+}
+
+#hero .container .row img {
+    width: 40%;
+}
+
+#hero .container .row h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+}
+
+#hero .container .row p {
+    font-size: 1.3rem;
+    width: 80%;
+}
+
+.btn-custom {
+    background: var(--acsentColor);
+    border: none;
+}
+/* End Hero */
+
+/* Style Feature */
+#feature {
+    background-color: var(--secondaryColor);
+}
+
+.card {
+    background-color: #414558;
+    height: 320px;
+}
+
+.card-body h5 {
+    font-size: 1.5rem;
+}
+
+.card-body p {
+    font-size: 1.2rem;
+}
+/* End Feature */
+
+/* Style Browse product */
+.p-browse-product {
+    font-size: 1.2rem;
+}
+
+.col-md-4 .card {
+    height: 500px;
+}
+/* End Browse Product */
+
+/* Style Browse Brand */
+#browse-brand {
+    background-color: var(--secondaryColor);
+}
+
+.card-browse {
+    height: 600px;
+}
+/* End Browse Brand */

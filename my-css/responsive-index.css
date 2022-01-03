@@ -1,0 +1,86 @@
+@media screen and (max-width: 576px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    #feature,
+    #browse-product,
+    #browse-brand {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    /* Hero Section */
+    .col-md-8 {
+        text-align: center;
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .col-md-8 h1 {
+        font-size: 2.2rem !important;
+    }
+
+    .col-md-8 p {
+        font-size: 1rem !important;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .col-md-8 a {
+        width: 55%;
+        font-size: 1rem;
+    }
+
+    #hero .container .row img {
+        display: none;
+    }
+    /* End Hero Section */
+
+    /* Feature */
+    #feature .container h1,
+    #browse-product .container h1,
+    #browse-brand .container h1 {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem !important;
+    }
+
+    .card-text,
+    #browse-product .container p {
+        font-size: 1rem !important;
+    }
+
+    .col-md-3 .card {
+        height: 250px;
+        margin-bottom: 30px;
+    }
+    /* End Feature */
+
+    /* Best=product */
+    .col-md-4 .card {
+        width: 20rem !important;
+        height: 380px;
+        margin-bottom: 30px;
+    }
+
+    .col-md-4 h5 {
+        margin-top: -20px;
+    }
+    /* End Best-product */
+
+    /* Browse-brand */
+    .col-md-5 .card {
+        width: 22rem !important;
+        height: 480px;
+    }
+    /* Browse-brand */
+}
