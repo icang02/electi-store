@@ -124,7 +124,7 @@
                 <div>
                     <a class="btn btn-danger me-1" href="process.php?delete=all"
                         onclick="return confirm('Yakin ingin mengosongkan cart?'); ">Empty Cart</a>
-                    <a class="btn btn-primary" href="">Checkout</a>
+                    <a class="btn btn-primary" href="checkout.php">Checkout</a>
                 </div>
             </div>
         </form>

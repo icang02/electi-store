@@ -40,9 +40,9 @@
         <?php endif ?>
 
         <?php while($data = mysqli_fetch_assoc($queryShow)  ) : ?>
-            <form action="" method="post" class="w-75 mx-auto">
+            form action="" method="post" class="w-75 mx-auto">
                 <?php if (isset($_GET['id-desc'])) : ?>
-                    <p class="text-end"><a href="product.php" class="btn btn-secondary btn-custom">Back to product</a></p>
+                    <p cl<ass="text-end"><a href="product.php" class="btn btn-secondary btn-custom">Back to product</a></p>
                 <?php else : ?>
                     <p class="text-end"><a href="cart.php" class="btn btn-secondary btn-custom">Back to cart</a></p> 
                 <?php endif ?>
