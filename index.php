@@ -1,6 +1,12 @@
 <?php 
-    include 'connect.php';
+    session_start();
+    if (!$_SESSION['login']) {
+        header('location: login.php');
+        exit;
+    }
 
+    include 'connect.php';
+    
     $queryShowProduct = mysqli_query($conn, "SELECT * FROM products WHERE id_product BETWEEN 1 AND 3");
     $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWEEN 1 AND 2");
 ?>
@@ -19,6 +25,7 @@
 
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- My Style -->
     <link rel="stylesheet" href="my-css/index.css?v=<?php echo time(); ?>" />
@@ -52,10 +59,10 @@
                         <a class="nav-link" href="cart.php">Cart</a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <a class="nav-link fw-bold  text-white me-2" href="login.php">Sign In</a>
-                    <a href="register.php" class="btn btn-secondary btn-custom fw-bold" type="button">Sign Up</a>
-                </div>
+                <a href="logout.php" class="btn btn-secondary btn-custom fw-bold" type="button" onclick="return confirm('Yakin ingin logout?')">
+                    <i class="fas fa-sign-out-alt me-1"></i>
+                    Log Out
+                </a>
             </div>
         </div>
     </nav>
@@ -69,7 +76,7 @@
                     <h1 class="fw-bold text-white mb-3">WELCOME TO ELECTI STORE</h1>
                     <p class="text-white"><span class="colorAcsent">ElecTI store</span> is a store that provides all
                         electronic needs. ElecTI store is one of the best electronics stores in Indonesia.</p>
-                    <a class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" href="menu-product.php"
+                    <a class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" href="product.php"
                         role="button">Get Our
                         Products</a>
                 </div>

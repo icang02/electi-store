@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if (isset($_SESSION['login'])) {
+        header('location: index.php');
+        exit;
+    }
+
     include 'connect.php';
     
     if (isset($_POST['login'])) {
@@ -13,6 +19,9 @@
             $data = mysqli_fetch_assoc($queryCek);
             
             if (password_verify($password, $data['password'])) {
+                // membuat session username
+                $_SESSION['login'] = true;
+
                 header('location: index.php');
             }
             else {
@@ -89,13 +98,13 @@
                                 Login
                             </button>
                         </div>
-                        <div class="mb-5 form-check d-flex justify-content-between">
+                        <!-- <div class="mb-5 form-check d-flex justify-content-between">
                             <div class="checkbox">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1" />
                                 <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                             </div>
                             <a href="#" class="text-decoration-none fw-bold colorAcsent">Forget Password?</a>
-                        </div>
+                        </div> -->
                         <p class="text-center">
                             Don't have an account yet?
                             <a href="register.php" class="text-decoration-none fw-bold colorAcsent">Sign up</a>

@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if (!$_SESSION['login']) {
+        header('location: login.php');
+        exit;
+    }
+
     include 'connect.php';
     $queryShow = mysqli_query($conn, "SELECT * FROM products");
 
@@ -51,10 +57,10 @@
                     </li>
 
                 </ul>
-                <div class="d-flex">
-                    <a class="nav-link fw-bold  text-white me-2" href="login.php">Sign In</a>
-                    <a href="register.php" class="btn btn-secondary btn-custom fw-bold" type="button">Sign Up</a>
-                </div>
+                <a href="logout.php" class="btn btn-secondary btn-custom fw-bold" type="button" onclick="return confirm('Yakin ingin logout?')">
+                    <i class="fas fa-sign-out-alt me-1"></i>
+                    Log Out
+                </a>
             </div>
         </div>
     </nav>

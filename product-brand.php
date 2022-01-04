@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if (!$_SESSION['login']) {
+        header('location: login.php');
+        exit;
+    }
+
     include('connect.php');
 
     $name_brand = $_GET['name-brand'];

@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+    if (!$_SESSION['login']) {
+        header('location: login.php');
+        exit;
+    }
+
     include "process.php";
 ?>
 
@@ -51,7 +57,7 @@
                 <input type="number" name="price_product" class="form-control fw-bold mb-4" value="<?= $data['price_product']  ?>" readonly>
 
                 <h5 class="text-white mb-3">Image</h4>
-                <img src="img/product-img/<?= $data['img_product'] ?>" width="400px" class="rounded mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <img src="img/product-img/<?= $data['img_product'] ?>" width="400px" class="rounded mb-4">
                 <input type="hidden" name="img_product" value="<?= $data['img_product'] ?>">
 
                 <h5 class="text-white mb-3">Brand</h4>
@@ -73,28 +79,11 @@
                 <button type="reset" name="reset" class="btn btn-danger">Reset</button>
             </form>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title fw-bold" id="exampleModalLabel"><?= $data['name_product'] ?></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <img class="img-fluid" src="img/product-img/<?= $data['img_product'] ?>">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         <?php endwhile ?>
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
