@@ -1,6 +1,11 @@
 <?php
-
 include 'connect.php';
+
+if (!isset($_SESSION['login'])) {
+    header('location: index.php');
+    exit;
+}
+
 $queryShow = mysqli_query($conn, "SELECT * FROM brands");
 
 ?>
@@ -33,10 +38,7 @@ $queryShow = mysqli_query($conn, "SELECT * FROM brands");
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link " aria-current="page" href="index.php">Home</a>
-                    </li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="product.php">Product</a>
                     </li>

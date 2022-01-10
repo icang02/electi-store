@@ -1,6 +1,10 @@
 <?php
-
 include('connect.php');
+
+if (!isset($_SESSION['login'])) {
+    header('location: index.php');
+    exit;
+}
 
 $name_brand = $_GET['name-brand'];
 $queryShow = mysqli_query($conn, "SELECT * FROM products WHERE brand_product = '$name_brand'");

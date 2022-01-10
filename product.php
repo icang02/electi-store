@@ -1,6 +1,16 @@
 <?php
-
 include 'connect.php';
+
+if (!isset($_SESSION['login'])) {
+    echo "
+        <script>
+            alert('Login terlebih dulu');
+            window.location='index.php';
+        </script>
+    ";
+    exit;
+}
+
 $queryShow = mysqli_query($conn, "SELECT * FROM products");
 
 ?>
@@ -33,12 +43,9 @@ $queryShow = mysqli_query($conn, "SELECT * FROM products");
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
-                        <a class="nav-link " aria-current="page" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link active fw-bold colorAcsent" href="menu-product.php">Product</a>
+                        <a class="nav-link active fw-bold colorAcsent" href="product.php">Product</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="brand.php">Brand</a>

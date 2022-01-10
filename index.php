@@ -1,8 +1,24 @@
 <?php
 include 'connect.php';
 
+if (isset($_POST['btn_our'])) {
+
+    if (!isset($_SESSION['login'])) {
+        echo "
+            <script>
+                alert('Login terlebih dulu');
+                window.location='index.php';
+            </script>
+        ";
+    } else {
+        header('location: product.php');
+    }
+}
+
+
 $queryShowProduct = mysqli_query($conn, "SELECT * FROM products WHERE id_product BETWEEN 1 AND 3");
 $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWEEN 1 AND 2");
+
 ?>
 
 <!DOCTYPE html>
@@ -31,18 +47,32 @@ $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWE
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-absolute w-100">
         <div class="container">
-            <a class="navbar-brand my-brand fw-bold" href="index.html">ElecTI Store</a>
+            <a class="navbar-brand my-brand fw-bold" href="index.php">ElecTI Store</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <a href="login.php" class="btn fw-bold colorAcsent me-2" type="button">Sign Up</a>
-                    <a href="register.php" class="btn btn-secondary btn-custom fw-bold" type="button">
-                        <!-- <i class="fas fa-sign-out-alt me-1"></i>/ -->
-                        Sign In
-                    </a>
-                </ul>
+                <?php if (!isset($_SESSION['login'])) : ?>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <a href="login.php" class="btn fw-bold colorAcsent me-2" type="button">Sign In</a>
+                        <a href="register.php" class="btn btn-secondary btn-custom fw-bold" type="button">Sign Up</a>
+                    <?php else : ?>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item mx-2">
+                                <a class="nav-link fw-bold" href="product.php">Product</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="brand.php">Brand</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="cart.php">Cart</a>
+                            </li>
+                        </ul>
+                        <a onclick="return confirm('Logout?') " href="logout.php" class="btn btn-secondary btn-custom fw-bold" type="button">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    <?php endif ?>
+                    </ul>
             </div>
         </div>
     </nav>
@@ -56,8 +86,10 @@ $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWE
                     <h1 class="fw-bold text-white mb-3">WELCOME TO ELECTI STORE</h1>
                     <p class="text-white"><span class="colorAcsent">ElecTI store</span> is a store that provides all
                         electronic needs. ElecTI store is one of the best electronics stores in Indonesia.</p>
-                    <a class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" href="product.php" role="button">Get Our
-                        Products</a>
+                    <!-- <a class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" href="product.php" role="button">Get Our Products</a> -->
+                    <form action="" method="post">
+                        <button type="submit" class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" name="btn_our">Get Our Product</button>
+                    </form>
                 </div>
                 <img class="position-absolute bottom-0 end-0" src="img/laptop-3.png" alt="Laptop" />
             </div>

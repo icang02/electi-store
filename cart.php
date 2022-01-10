@@ -1,6 +1,10 @@
 <?php
-
 include 'connect.php';
+
+if (!isset($_SESSION['login'])) {
+    header('location: index.php');
+    exit;
+}
 
 // Mengambil data dari table carts
 $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product");
@@ -37,10 +41,7 @@ $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
-                    </li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="product.php">Product</a>
                     </li>
@@ -116,8 +117,13 @@ $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product
             <div class="d-flex justify-content-between">
                 <h5 class="text-white fw-bold">Order Total : <span class="colorAcsent fs-4">Rp<?= number_format($total, 0, '', '.') ?></span></h6>
                     <div>
-                        <a class="btn btn-danger me-1" href="process.php?delete=all" onclick="return confirm('Yakin ingin mengosongkan cart?'); ">Empty Cart</a>
-                        <a class="btn btn-primary" href="checkout.php">Checkout</a>
+                        <?php if (mysqli_num_rows($queryShowCarts) == 1) : ?>
+                            <a class="btn btn-danger me-1" href="process.php?delete=all" onclick="return confirm('Yakin ingin mengosongkan cart?'); ">Empty Cart</a>
+                            <a class="btn btn-primary" href="checkout.php">Checkout</a>
+                        <?php else : ?>
+                            <button class="btn btn-danger me-1" disabled>Empty cart</button>
+                            <button class="btn btn-primary" disabled>Checkout</button>
+                        <?php endif ?>
                     </div>
             </div>
         </form>

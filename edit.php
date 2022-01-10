@@ -1,6 +1,11 @@
 <?php
-
 include "connect.php";
+
+if (!isset($_SESSION['login'])) {
+    header('location: index.php');
+    exit;
+}
+
 $name_product = $_GET['name'];
 
 $sqlShow = "SELECT * FROM carts WHERE name_product = '$name_product'";

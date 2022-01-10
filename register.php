@@ -1,6 +1,10 @@
 <?php
-
 include 'connect.php';
+
+if (isset($_SESSION['login'])) {
+    header('location: index.php');
+    exit;
+}
 
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
