@@ -6,6 +6,16 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
+// query total pembayaran
+$resultPayment = mysqli_query($conn, "SELECT SUM(total_price) AS sum_payment FROM carts");
+$rowPayment = mysqli_fetch_assoc($resultPayment);
+$sumPayment = $rowPayment['sum_payment'];
+
+// query total items
+$resultItems = mysqli_query($conn, "SELECT SUM(item_quantity) AS sum_item FROM carts");
+$rowItems = mysqli_fetch_assoc($resultItems);
+$sumItems = $rowItems['sum_item'];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,28 +45,28 @@ if (!isset($_SESSION['login'])) {
         <h2 class="text-center text-white colorAcsent fw-bold mb-5">Checkout Your Items</h1>
 
             <form action="" method="post" class="w-75 mx-auto">
-                <h5 class="text-white mb-3">Full Name</h4>
-                    <input type="text" class="form-control fw-bold mb-4" id="name_product" required>
+                <h5 class="text-white mb-4">Full Name</h5>
+                <input type="text" class="form-control fw-bold mb-4" id="name_product" required>
 
-                    <h5 class="text-white mb-3">Complete Address</h4>
-                        <textarea name="desc_product" class="form-control fw-bold mb-4" required></textarea>
+                <h5 class="text-white mb-4">Complete Address</h5>
+                <textarea name="desc_product" class="form-control fw-bold mb-4" required></textarea>
 
-                        <h5 class="text-white mb-3">Total Price</h4>
-                            <input type="number" name="price_product" class="form-control fw-bold mb-4" readonly>
+                <h5 class="text-white mb-4">Total Price</h5>
+                <input type="number" name="price_product" class="form-control fw-bold mb-4" readonly value="<?= $sumPayment ?>">
 
-                            <h5 class="text-white mb-3">Total of All Items</h4>
-                                <input type="number" class="form-control mb-4 fw-bold" readonly style="width: 208px;">
+                <h5 class="text-white mb-4">Total of All Items</h5>
+                <input type="number" class="form-control mb-4 fw-bold" readonly style="width: 208px;" value="<?= $sumItems ?>">
 
-                                <h5 class="text-white mb-3">Method of Payment</h4>
-                                    <select class="form-select mb-4" style="width: 208px;">
-                                        <option>Select</option>
-                                        <option>BRI</option>
-                                        <option>BNI</option>
-                                        <option>BCA</option>
-                                    </select>
+                <h5 class="text-white mb-4">Method of Payment</h5>
+                <select class="form-select mb-5" style="width: 150px;" required>
+                    <option></option>
+                    <option>BRI</option>
+                    <option>BNI</option>
+                    <option>BCA</option>
+                </select>
 
-                                    <a href="cart.php" class="btn btn-secondary ">Back to cart</a>
-                                    <button type="submit" name="checkout" class="btn btn-warning me-1">Continue</button>
+                <a href="cart.php" class="btn btn-secondary me-1">Back to cart</a>
+                <button type="submit" name="checkout" class="btn btn-warning">Continue</button>
             </form>
     </div>
 

@@ -8,6 +8,12 @@ if (!isset($_SESSION['login'])) {
 
 // Mengambil data dari table carts
 $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product");
+
+// query total pembayaran
+$resultPayment = mysqli_query($conn, "SELECT SUM(total_price) AS sum_payment FROM carts");
+$rowPayment = mysqli_fetch_assoc($resultPayment);
+$sumPayment = $rowPayment['sum_payment'];
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +42,7 @@ $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand my-brand fw-bold" href="index.html">ElecTI Store</a>
+            <a class="navbar-brand my-brand fw-bold" href="index.php">ElecTI Store</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -79,10 +85,7 @@ $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $no = 1;
-                    $total = 0;
-                    ?>
+                    <?php $no = 1 ?>
                     <?php while ($data = mysqli_fetch_assoc($queryShowCarts)) : ?>
                         <tr>
                             <th scope="row"><?= $no++ . '.' ?></th>
@@ -110,14 +113,13 @@ $queryShowCarts = mysqli_query($conn, "SELECT * FROM carts ORDER BY name_product
                                 </a>
                             </td>
                         </tr>
-                        <?php $total += $data['total_price'] ?>
                     <?php endwhile ?>
                 </tbody>
             </table>
             <div class="d-flex justify-content-between">
-                <h5 class="text-white fw-bold">Order Total : <span class="colorAcsent fs-4">Rp<?= number_format($total, 0, '', '.') ?></span></h6>
+                <h5 class="text-white fw-bold">Order Total : <span class="colorAcsent fs-4">Rp<?= number_format($sumPayment, 0, '', '.') ?></span></h6>
                     <div>
-                        <?php if (mysqli_num_rows($queryShowCarts) == 1) : ?>
+                        <?php if (mysqli_num_rows($queryShowCarts) > 0) : ?>
                             <a class="btn btn-danger me-1" href="process.php?delete=all" onclick="return confirm('Yakin ingin mengosongkan cart?'); ">Empty Cart</a>
                             <a class="btn btn-primary" href="checkout.php">Checkout</a>
                         <?php else : ?>
