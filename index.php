@@ -1,14 +1,8 @@
-<?php 
-    session_start();
-    if (!$_SESSION['login']) {
-        header('location: login.php');
-        exit;
-    }
+<?php
+include 'connect.php';
 
-    include 'connect.php';
-    
-    $queryShowProduct = mysqli_query($conn, "SELECT * FROM products WHERE id_product BETWEEN 1 AND 3");
-    $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWEEN 1 AND 2");
+$queryShowProduct = mysqli_query($conn, "SELECT * FROM products WHERE id_product BETWEEN 1 AND 3");
+$queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWEEN 1 AND 2");
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
@@ -39,30 +32,17 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-absolute w-100">
         <div class="container">
             <a class="navbar-brand my-brand fw-bold" href="index.html">ElecTI Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link active fw-bold colorAcsent" aria-current="page" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="product.php">Product</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="brand.php">Brand</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="cart.php">Cart</a>
-                    </li>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <a href="login.php" class="btn fw-bold colorAcsent me-2" type="button">Sign Up</a>
+                    <a href="register.php" class="btn btn-secondary btn-custom fw-bold" type="button">
+                        <!-- <i class="fas fa-sign-out-alt me-1"></i>/ -->
+                        Sign In
+                    </a>
                 </ul>
-                <a href="logout.php" class="btn btn-secondary btn-custom fw-bold" type="button" onclick="return confirm('Yakin ingin logout?')">
-                    <i class="fas fa-sign-out-alt me-1"></i>
-                    Log Out
-                </a>
             </div>
         </div>
     </nav>
@@ -76,8 +56,7 @@
                     <h1 class="fw-bold text-white mb-3">WELCOME TO ELECTI STORE</h1>
                     <p class="text-white"><span class="colorAcsent">ElecTI store</span> is a store that provides all
                         electronic needs. ElecTI store is one of the best electronics stores in Indonesia.</p>
-                    <a class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" href="product.php"
-                        role="button">Get Our
+                    <a class="btn btn-secondary btn-lg fw-bold mt-4 btn-custom" href="product.php" role="button">Get Our
                         Products</a>
                 </div>
                 <img class="position-absolute bottom-0 end-0" src="img/laptop-3.png" alt="Laptop" />
@@ -93,15 +72,15 @@
             <div class="row">
 
                 <?php for ($row = 0; $row < count($textFeature); $row++) : ?>
-                <div class="col-md-3 col-12 mb-5">
-                    <div class="card py-4 px-2 mx-auto shadow" style="width: 18rem">
-                        <i class="bi bi-check-square-fill text-center text-white mb-2 fs-1"></i>
-                        <div class="card-body">
-                            <h5 class="card-title mb-4 text-center fw-bold text-white"><?= $textFeature[$row][0] ?></h5>
-                            <p class="card-text text-center text-white"><?= $textFeature[$row][1] ?></p>
+                    <div class="col-md-3 col-12 mb-5">
+                        <div class="card py-4 px-2 mx-auto shadow" style="width: 18rem">
+                            <i class="bi bi-check-square-fill text-center text-white mb-2 fs-1"></i>
+                            <div class="card-body">
+                                <h5 class="card-title mb-4 text-center fw-bold text-white"><?= $textFeature[$row][0] ?></h5>
+                                <p class="card-text text-center text-white"><?= $textFeature[$row][1] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php endfor ?>
 
             </div>
@@ -117,15 +96,15 @@
             <div class="row">
 
                 <?php while ($data = mysqli_fetch_assoc($queryShowProduct)) : ?>
-                <div class="col-md-4 col-12">
-                    <div class="card py-2 px-2 mx-auto shadow" style="width: 25rem">
-                        <img src="img/product-img/<?= $data['img_product'] ?>" class="card-img-top" />
-                        <div class="card-body d-flex flex-column justify-content-center">
-                            <h5 class="card-title mb-4 text-center fw-bold text-white"><?= $data['name_product'] ?></h5>
-                            <p class="card-text text-center text-white"><?= $data['desc_product'] ?></p>
+                    <div class="col-md-4 col-12">
+                        <div class="card py-2 px-2 mx-auto shadow" style="width: 25rem">
+                            <img src="img/product-img/<?= $data['img_product'] ?>" class="card-img-top" />
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="card-title mb-4 text-center fw-bold text-white"><?= $data['name_product'] ?></h5>
+                                <p class="card-text text-center text-white"><?= $data['desc_product'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php endwhile ?>
 
             </div>
@@ -141,13 +120,13 @@
             <div class="d-flex flex-wrap">
 
                 <?php while ($data = mysqli_fetch_assoc($queryShowBrand)) : ?>
-                <div class="card py-2 px-2 mx-auto shadow mb-4" style="width: 30rem; height: 570px">
-                    <img src="img/brand-img/<?= $data['img_brand'] ?>" class="card-img-top" />
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h5 class="card-title mb-4 text-center fw-bold text-white"><?= $data['name_brand'] ?></h5>
-                        <p class="card-text text-center text-white"><?= $data['desc_brand'] ?></p>
+                    <div class="card py-2 px-2 mx-auto shadow mb-4" style="width: 30rem; height: 570px">
+                        <img src="img/brand-img/<?= $data['img_brand'] ?>" class="card-img-top" />
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title mb-4 text-center fw-bold text-white"><?= $data['name_brand'] ?></h5>
+                            <p class="card-text text-center text-white"><?= $data['desc_brand'] ?></p>
+                        </div>
                     </div>
-                </div>
                 <?php endwhile ?>
 
             </div>
@@ -168,8 +147,7 @@
     </footer>
     <!-- akhir Footer -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 </body>
 
