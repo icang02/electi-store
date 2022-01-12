@@ -30,7 +30,7 @@ $queryShow = mysqli_query($conn, "SELECT * FROM brands");
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-absolute w-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-absolute w-100" id="hero">
         <div class="container">
             <a class="navbar-brand my-brand fw-bold" href="index.php">ElecTI Store</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,6 +81,19 @@ $queryShow = mysqli_query($conn, "SELECT * FROM brands");
             </div>
     </div>
     <!-- akhir Product -->
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+        <div class="container p-4 pb-0">
+            <p>Contact Our: +62-123-123-123</p>
+        </div>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            &copy 2022 Copyright:
+            <a class="text-white" href="#hero">ElecTI-Store.com</a>
+        </div>
+    </footer>
+    <!-- akhir Footer -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

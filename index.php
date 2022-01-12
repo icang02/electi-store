@@ -172,7 +172,7 @@ $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWE
         </div>
 
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            &copy 2021 Copyright:
+            &copy 2022 Copyright:
             <a class="text-white" href="#hero">ElecTI-Store.com</a>
         </div>
     </footer>
