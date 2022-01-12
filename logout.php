@@ -4,4 +4,9 @@ $_SESSION = [];
 session_unset();
 session_destroy();
 
-header('location: index.php');
+echo "
+    <script>
+        alert('Berhasil logout');
+        window.location='index.php';
+    </script>
+";

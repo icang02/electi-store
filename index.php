@@ -11,10 +11,9 @@ if (isset($_POST['btn_our'])) {
             </script>
         ";
     } else {
-        header('location: product.php');
+        header('Location: product.php');
     }
 }
-
 
 $queryShowProduct = mysqli_query($conn, "SELECT * FROM products WHERE id_product BETWEEN 1 AND 3");
 $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWEEN 1 AND 2");
@@ -40,7 +39,7 @@ $queryShowBrand = mysqli_query($conn, "SELECT * FROM brands WHERE id_brand BETWE
     <link rel="stylesheet" href="my-css/index.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="my-css/responsive-index.css?v=<?php echo time(); ?>" />
 
-    <title>ELECTI STORE</title>
+    <title>Electi Store</title>
 </head>
 
 <body>
